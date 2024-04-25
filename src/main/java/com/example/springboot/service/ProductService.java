@@ -4,6 +4,8 @@ import com.example.springboot.models.ProductModel;
 import com.example.springboot.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +22,8 @@ public class ProductService {
         return repository.save(productModel);
     }
 
-    public List<ProductModel> findAll() {
-        return repository.findAll();
+    public Page<ProductModel> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public Optional<ProductModel> findById(UUID id) {
